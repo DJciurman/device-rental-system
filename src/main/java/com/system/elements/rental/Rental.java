@@ -16,6 +16,9 @@ public class Rental {
     @Column(length = 11, name = "id")
     private int id;
 
+    @Column(length = 11, name = "amount")
+    private int amount;
+
     @Column(nullable = false, name = "rentalDate")
     private Date rentalDate;
 
@@ -38,6 +41,14 @@ public class Rental {
 
     public int getId() {
         return id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public Date getRentalDate() {

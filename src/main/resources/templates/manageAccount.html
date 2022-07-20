@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edycja danych</title>
+</head>
+<body>
+<form th:action="@{/manageAccount}" method="post" th:object="${user}">
+    <input type="text" placeholder="Imię" th:field="*{firstName}" th:value="${user.firstName}" required><br/>
+    <input type="text" placeholder="Nazwisko" th:field="*{lastName}" th:value="${user.lastName}" required><br/>
+    <input type="email" placeholder="Adres e-mail" th:field="*{email}" th:value="${user.email}" required><br/>
+    <input type="tel" pattern="[0-9]{9}" placeholder="Telefon" th:field="*{phoneNumber}" th:value="${user.phoneNumber}" required><br/>
+    <input type="text" placeholder="Adres" th:field="*{address}" th:value="${user.address}" required><br/>
+    <input type="text" placeholder="Miasto" th:field="*{city}" th:value="${user.city}" required><br/>
+    <input type="password" placeholder="Hasło" name="password" required><br/>
+    <input type="submit" value="Prześlij">
+</form>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Wyloguj"/>
+</form>
+</body>
+</html>
