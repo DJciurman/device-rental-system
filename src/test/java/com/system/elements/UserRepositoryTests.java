@@ -21,12 +21,31 @@ public class UserRepositoryTests {
     @Test
     public void testAddUser() {
         User user = new User();
-        user.setFirstName("TestoweImie");
-        user.setLastName("TestoweNazwisko");
+        user.setFirstName("Adam");
+        user.setLastName("Kowalski");
         user.setEmail("email@test.com");
         user.setPhoneNumber(888888888);
-        user.setAddress("Testowa 36");
-        user.setCity("Testowo");
+        user.setAddress("Tęczowa 36");
+        user.setCity("Tarnów");
+
+        user.setPassword("TestTest");
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encodedPassword = encoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+
+        repoUser.save(user);
+    }
+
+    @Test
+    public void testAddAnotherUser() {
+        User user = new User();
+        user.setFirstName("Damian");
+        user.setLastName("Pomorski");
+        user.setEmail("email1@test.com");
+        user.setPhoneNumber(888888888);
+        user.setAddress("Wąska 385");
+        user.setCity("Kołobrzeg");
 
         user.setPassword("TestTest");
 

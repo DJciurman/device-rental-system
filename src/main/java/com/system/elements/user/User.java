@@ -1,6 +1,8 @@
 package com.system.elements.user;
 
 import com.system.elements.employee.Employee;
+import com.system.elements.mark.Mark;
+import com.system.elements.message.Message;
 import com.system.elements.rental.Rental;
 
 import javax.persistence.*;
@@ -24,6 +26,9 @@ public class User {
     @Column(nullable = false, unique = true, length = 255, name = "email")
     private String email;
 
+    @Column(nullable = false, length = 255, name = "accountEmail")
+    private String accountEmail;
+
     @Column(nullable = false, length = 255, name = "password")
     private String password;
 
@@ -41,6 +46,15 @@ public class User {
 
     @OneToMany(mappedBy = "user", targetEntity = Rental.class, cascade = CascadeType.ALL)
     private Set<Rental> rental;
+
+    @OneToMany(mappedBy = "sender", targetEntity = Message.class, cascade = CascadeType.ALL)
+    private Set<Message> sender;
+
+    @OneToMany(mappedBy = "receiver", targetEntity = Message.class, cascade = CascadeType.ALL)
+    private Set<Message> receiver;
+
+    @OneToMany(mappedBy = "user", targetEntity = Mark.class, cascade = CascadeType.ALL)
+    private Set<Mark> mark;
 
     public int getId() {
         return id;
@@ -67,6 +81,11 @@ public class User {
     }
 
     public void setEmail(String email) {
+        this.email = email;
+        this.accountEmail = email;
+    }
+
+    public void setEmailOnDelete(String email) {
         this.email = email;
     }
 
@@ -112,5 +131,17 @@ public class User {
 
     public Set<Rental> getRental() {
         return rental;
+    }
+
+    public Set<Message> getSender() {
+        return sender;
+    }
+
+    public Set<Message> getReceiver() {
+        return receiver;
+    }
+
+    public Set<Mark> getMark() {
+        return mark;
     }
 }

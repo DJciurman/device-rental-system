@@ -15,7 +15,7 @@ public class Store {
     @Column(length = 11, name = "id")
     private int id;
 
-    @Column(nullable = false, length = 255, name = "name")
+    @Column(nullable = false, unique = true, length = 255, name = "name")
     private String name;
 
     @Column(nullable = false, length = 255, name = "address")

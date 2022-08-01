@@ -22,7 +22,7 @@ public class Employee {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "storeId", nullable = false)
+    @JoinColumn(name = "storeId", nullable = true)
     private Store store;
 
     public int getId() {

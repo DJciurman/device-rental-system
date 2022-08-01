@@ -25,10 +25,10 @@ public class Rental {
     @Column(nullable = false, length = 7, name = "rentalTime")
     private Time rentalTime;
 
-    @Column(nullable = false, name = "returnDate")
+    @Column(nullable = true, name = "returnDate")
     private Date returnDate;
 
-    @Column(nullable = false, length = 7, name = "returnTime")
+    @Column(nullable = true, length = 7, name = "returnTime")
     private Time returnTime;
 
     @ManyToOne
