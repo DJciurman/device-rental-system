@@ -3,20 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Edycja danych</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
 </head>
 <body>
-<form th:action="@{/manageAccount}" method="post" th:object="${user}">
-    <input type="text" placeholder="Imię" th:field="*{firstName}" th:value="${user.firstName}" required><br/>
-    <input type="text" placeholder="Nazwisko" th:field="*{lastName}" th:value="${user.lastName}" required><br/>
-    <input type="email" placeholder="Adres e-mail" th:field="*{email}" th:value="${user.email}" required><br/>
-    <input type="tel" pattern="[0-9]{9}" placeholder="Telefon" th:field="*{phoneNumber}" th:value="${user.phoneNumber}" required><br/>
-    <input type="text" placeholder="Adres" th:field="*{address}" th:value="${user.address}" required><br/>
-    <input type="text" placeholder="Miasto" th:field="*{city}" th:value="${user.city}" required><br/>
-    <input type="password" placeholder="Hasło" name="password" required><br/>
-    <input type="submit" value="Prześlij">
-</form>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Wyloguj"/>
+<ul class="nav nav-pills nav-fill">
+    <li class="nav-item"><a class="nav-link active" th:href="@{/manageAccount}">Panel Użytkownika</a></li>
+    <li class="nav-item"><a class="nav-link" th:href="@{/deviceList}">Lista Urządzeń</a></li>
+    <li class="nav-item"><a class="nav-link" th:href="@{/rentalList}">Wypożyczenia</a></li>
+</ul>
+<div class="container text-center">
+    <div>
+        <h1>Edycja danych użytkownika</h1>
+    </div>
+    <form th:action="@{/manageAccount}" method="post" th:object="${user}" style="max-width: 600px; margin: 0 auto">
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-form-label col-4">Imię:</label>
+                <div class="col-8">
+                    <input type="text" placeholder="Imię" th:field="*{firstName}" th:value="${user.firstName}"
+                           minlength="2" maxlength="20" required
+                           class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Nazwisko:</label>
+                <div class="col-8">
+                    <input type="text" placeholder="Nazwisko" th:field="*{lastName}" th:value="${user.lastName}"
+                           minlength="2" maxlength="20"
+                           required class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Adres e-mail:</label>
+                <div class="col-8">
+                    <input type="email" placeholder="Adres e-mail" th:field="*{email}" th:value="${user.email}"
+                           minlength="5" maxlength="40"
+                           required class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Numer Telefonu:</label>
+                <div class="col-8">
+                    <input type="tel" pattern="[0-9]{9}" placeholder="Telefon" th:field="*{phoneNumber}"
+                           th:value="${user.phoneNumber}" required class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Adres:</label>
+                <div class="col-8">
+                    <input type="text" placeholder="Adres" th:field="*{address}" th:value="${user.address}"
+                           minlength="5" maxlength="40" required
+                           class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Miasto:</label>
+                <div class="col-8">
+                    <input type="text" placeholder="Miasto" th:field="*{city}" th:value="${user.city}" maxlength="40"
+                           required
+                           class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Zatwierdź hasłem:</label>
+                <div class="col-8">
+                    <input type="password" placeholder="Hasło" th:name="password" required class="form-control">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Zmień</button>
+            <button onclick="document.getElementById('logout').submit();" class="btn btn-primary">Wyloguj</button>
+        </div>
+    </form>
+</div>
+<form th:id="logout" th:action="@{/logout}" method="post">
 </form>
 </body>
 </html>

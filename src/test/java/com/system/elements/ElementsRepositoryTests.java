@@ -264,7 +264,7 @@ public class ElementsRepositoryTests {
         //Device - Sklep 2 - Słuchawki
         device = new Device();
 
-        store = repoStore.findStoreById(1);
+        store = repoStore.findStoreById(2);
         device.setStore(store);
 
         device.setName("Słuchawki");

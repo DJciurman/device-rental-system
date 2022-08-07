@@ -60,11 +60,12 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    private String processRegister(User user, Model model) {
+    private String processRegister(User user, Model model, @RequestParam("phoneNumber") int phoneNumber) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPassword = encoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         String error = "correctRegister";
+        user.setPhoneNumber(phoneNumber);
         try {
             repoUser.save(user);
         } catch (Exception e) {
