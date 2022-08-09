@@ -32,7 +32,8 @@
                     </select>
                 </div>
             </div>
-            <button type="submit" th:name="ids" th:value="${mark.user.id} + ':' + ${mark.device.id}" class="btn btn-primary">Dodaj</button>
+            <button th:unless="${mark.id == null}" type="submit" th:name="ids" th:value="${mark.user.id} + ':' + ${mark.device.id} + ':' + ${mark.id}" class="btn btn-primary">Zmień</button>
+            <button th:if="${mark.id == null}" type="submit" th:name="ids" th:value="${mark.user.id} + ':' + ${mark.device.id} + ':0'" class="btn btn-primary">Zmień</button>
         </div>
     </form>
 </div>

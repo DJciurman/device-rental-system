@@ -3,6 +3,7 @@ package com.system.elements.rental;
 import com.system.elements.device.Device;
 import com.system.elements.device.DeviceRepository;
 import com.system.elements.mark.Mark;
+import com.system.elements.mark.MarkRepository;
 import com.system.elements.user.User;
 import com.system.elements.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class RentalController {
     @Autowired
     private DeviceRepository repoDevice;
 
+    @Autowired
+    private MarkRepository repoMark;
+
     @RequestMapping(value = {"/rentalList", "/rentalAction"})
     private String viewRentalListPage(Model model) {
 
@@ -45,6 +49,7 @@ public class RentalController {
         Set<Rental> rentals = repoRental.findAllUserRentals(user);
 
         model.addAttribute("rentals", rentals);
+
         return "rentalList";
     }
 
@@ -78,17 +83,23 @@ public class RentalController {
 
             repoDevice.save(device);
         } else if (option.equals("rate")) {
-            Mark mark = new Mark();
-
             Rental rental = repoRental.findRentalById(id);
 
-            mark.setDevice(rental.getDevice());
-            mark.setUser(user);
+            User rentalUser = rental.getUser();
+            Device rentalDevice = rental.getDevice();
 
+            Mark mark = repoMark.findMarkByUserAndDevice(rentalUser, rentalDevice);
+            if (mark != null) {
+                model.addAttribute("mark", mark);
+                return "addMark";
+            } else {
+                mark = new Mark();
+
+                mark.setDevice(rentalDevice);
+                mark.setUser(user);
+            }
             model.addAttribute("mark", mark);
             return "addMark";
-        } else if (option.equals("changeRate")) {
-
         }
 
         Set<Rental> rentals = repoRental.findAllUserRentals(user);

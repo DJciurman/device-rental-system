@@ -37,15 +37,33 @@ public class MarkController {
 
         int userId = Integer.parseInt(ids.split(":")[0]);
         int deviceId = Integer.parseInt(ids.split(":")[1]);
+        int markId = Integer.parseInt(ids.split(":")[2]);
 
-        mark.setUser(repoUser.findUserById(userId));
-        mark.setDevice(repoDevice.findDeviceById(deviceId));
+        if (markId != 0) {
+            Mark oldMark = repoMark.findMarkById(markId);
+            oldMark.setDevice(repoDevice.findDeviceById(deviceId));
+            oldMark.setUser(repoUser.findUserById(userId));
+            oldMark.setValue(mark.getValue());
+            oldMark.setDescription(mark.getDescription());
 
-        try {
-            repoMark.save(mark);
-        } catch (Exception e) {
+            try {
+                repoMark.save(oldMark);
+            } catch (Exception e) {
 
+            }
+
+        } else {
+            mark.setUser(repoUser.findUserById(userId));
+            mark.setDevice(repoDevice.findDeviceById(deviceId));
+
+            try {
+                repoMark.save(mark);
+            } catch (Exception e) {
+
+            }
         }
+
+
 
         Set<Rental> rentals = repoRental.findAllUserRentals(user);
 

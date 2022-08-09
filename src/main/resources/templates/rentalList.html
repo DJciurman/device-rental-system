@@ -35,7 +35,7 @@
                 <td style="vertical-align: middle" th:text="${rental.device.store.name}">Sklep</td>
                 <td>
                     <button th:if="${rental.returnDate == null}"  type="submit" th:value="'return:' + ${rental.id}" th:name="rentalId" class="btn btn-primary">Zwróć</button>
-                    <button th:unless="${rental.returnDate == null}"  type="submit" th:value="'rate:' + ${rental.id}" th:name="rentalId" class="btn btn-primary">Oceń</button>
+                    <button th:unless="${rental.returnDate == null}"  type="submit" th:value="'rate:' + ${rental.id}" th:name="rentalId" class="btn btn-primary">Oceń lub Zmień ocenę</button>
                 </td>
             </tr>
         </form>
