@@ -10,6 +10,7 @@
     <li class="nav-item"><a class="nav-link" th:href="@{/manageAccount}">Panel Użytkownika</a></li>
     <li class="nav-item"><a class="nav-link" th:href="@{/deviceList}">Lista Urządzeń</a></li>
     <li class="nav-item"><a class="nav-link active" th:href="@{/rentalList}">Wypożyczenia</a></li>
+    <li th:if="${role == 'Pracownik'}" class="nav-item"><a class="nav-link" th:href="@{/addDevice}">Dodanie/Modyfikacja Urządzenia</a></li>
 </ul>
     <table class="table table-hover table-striped">
         <thead class="thead-dark">

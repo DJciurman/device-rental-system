@@ -12,6 +12,7 @@
     <li class="nav-item"><a class="nav-link active" th:href="@{/deviceList}">Lista Urządzeń</a></li>
     <li th:if="${role == 'Gosc'}" class="nav-item"><a class="nav-link" th:href="@{/login}">Logowanie</a></li>
     <li th:unless="${role == 'Gosc'}" class="nav-item"><a class="nav-link" th:href="@{/rentalList}">Wypożyczenia</a></li>
+    <li th:if="${role == 'Pracownik'}" class="nav-item"><a class="nav-link" th:href="@{/addDevice}">Dodanie/Modyfikacja Urządzenia</a></li>
 </ul>
 <div class="container text-center">
     <div>

@@ -36,6 +36,12 @@ public class RentalController {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = repoUser.findUserByEmail(email);
 
+        if (user.getEmployee() == null) {
+            model.addAttribute("role", "Klient");
+        } else {
+            model.addAttribute("role", "Pracownik");
+        }
+
         Set<Rental> rentals = repoRental.findAllUserRentals(user);
 
         model.addAttribute("rentals", rentals);
@@ -86,6 +92,13 @@ public class RentalController {
         Set<Rental> rentals = repoRental.findAllUserRentals(user);
 
         model.addAttribute("rentals", rentals);
+
+        if (user.getEmployee() == null) {
+            model.addAttribute("role", "Klient");
+        } else {
+            model.addAttribute("role", "Pracownik");
+        }
+
         return "rentalList";
     }
 
