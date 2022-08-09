@@ -87,6 +87,8 @@ public class RentalController {
 
             model.addAttribute("mark", mark);
             return "addMark";
+        } else if (option.equals("changeRate")) {
+
         }
 
         Set<Rental> rentals = repoRental.findAllUserRentals(user);

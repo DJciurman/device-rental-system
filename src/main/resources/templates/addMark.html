@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+</head>
+<body>
+<ul class="nav nav-pills nav-fill">
+    <li class="nav-item"><a class="nav-link" th:href="@{/manageAccount}">Panel Użytkownika</a></li>
+    <li class="nav-item"><a class="nav-link" th:href="@{/deviceList}">Lista Urządzeń</a></li>
+    <li class="nav-item"><a class="nav-link" th:href="@{/rentalList}">Wypożyczenia</a></li>
+    <li class="nav-item"><a class="nav-link" th:href="@{/addDevice}">Dodanie/Modyfikacja Urządzenia</a></li>
+</ul>
+<div class="container text-center">
+    <div>
+        <h1>Edycja danych użytkownika</h1>
+    </div>
+    <form th:action="@{/addMark}" method="post" th:object="${mark}" style="max-width: 600px; margin: 0 auto">
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-form-label col-4">Opis:</label>
+                <div class="col-8">
+                    <textarea class="form-control" placeholder="Opis" th:field="*{description}" th:value="${mark.description}" required minlength="1"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-4">Ocena:</label>
+                <div class="col-8">
+                    <select th:field="*{value}" class="custom-select">
+                        <option th:each="i: ${#numbers.sequence(1, 10)}" th:value="${i}" th:text="${i}"></option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" th:name="ids" th:value="${mark.user.id} + ':' + ${mark.device.id}" class="btn btn-primary">Dodaj</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
